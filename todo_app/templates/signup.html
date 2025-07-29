@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block  content %}
+   {% if messages %}
+        {% for message in messages %}
+                <div class="alert alert-dark mx-auto text-center" role="alert" style="background-color: transparent; border: none;width: fit-content">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+        {% endfor %}
+  {% endif %}
+
+    <div class="signup-login">
+        
+        <div class="signup-box">
+            <form method="post" >
+                {% csrf_token %}
+                
+                <div class="heading">
+                    SignUp
+                </div>
+                
+
+                <div class="line"></div>
+                    
+                <div class="field">
+                    <b>Username</b>
+                    <input type="text" required class="inp" placeholder="Enter your username" name="fnm">
+                </div>
+
+                <div class="field">
+                    <b>Email</b>
+                    <input type="email" required class="inp" placeholder="Enter your email" name="email">
+                </div>
+
+                <div class="field">
+                <b>Password</b>
+                <input type="password" required class="inp" placeholder="Enter your password" name="pwd">
+                </div>
+
+                <div class="field">
+                <input type="submit" class="submit-button" value="Signup">
+                </div>
+
+                <div class="field">
+                <b>  Already have an account?<a href="/signin">Login in here</a></b>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock  %}

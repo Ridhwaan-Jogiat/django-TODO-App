@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block  content %}
+   {% if messages %}
+        {% for message in messages %}
+                <div class="alert alert-dark mx-auto text-center" role="alert" style="background-color: transparent; border: none;width: fit-content">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+        {% endfor %}
+  {% endif %}
+  
+
+
+    <div class="signup-login">
+     
+        <div class="signup-box scr">
+            <h1 style="color: white; text-align: center;">Hi! {{ user.first_name.capitalize }}</h1>
+           
+            <div class="heading">
+                    Todo List
+                </div>
+            
+            <div><a href="{% url 'signout' %}"><i class="fa fa-sign-out" aria-hidden="true" style="color: gold;" ></i></a>
+            
+            <form method="post" >
+                {% csrf_token %}
+                
+                
+                <input type="text" class="inp" name="title" required placeholder="Add todays task!">
+                <input type="submit" class="submit-button" value="Add Task">
+               
+            </form>
+            
+                    {% for todo in res %}
+                        <div class="Todo">
+                            <h5 class="">{{todo.id}}</h5>
+                            <p class="">{{todo.title|truncatechars:20}}</p>
+                            <div class="">
+                        <a href="/edit_todo/{{todo.id}}"><i class="fas fa-edit" style="color: blue;"></i></a>
+                        <a href="/delete_todo/{{todo.id}}"><i class="fa fa-trash" aria-hidden="true" style="color: red;" ></i></a>
+                    </div>
+                
+                        </div>
+                         
+                    {% endfor %}
+                   
+        </div>
+    </div>
+{% endblock  %}
